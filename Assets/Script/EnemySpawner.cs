@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _emeny;
+    [SerializeField] private Enemy _emeny;
     [SerializeField] private Vector3[] _positions;
 
     private int _quantityPositions;
@@ -11,18 +11,21 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         _quantityPositions = _positions.Length;
+
         StartCoroutine(Spawn());
     }
 
     private IEnumerator Spawn()
     {
-        int index = Random.Range(0, _quantityPositions);
+        while (true)
+        {
+            int index = Random.Range(0, _quantityPositions);
 
-        GameObject newEnemy = Instantiate(_emeny, _positions[index], Quaternion.identity);
+            Enemy newEnemy = Instantiate(_emeny, _positions[index], Quaternion.identity);
 
-        yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(2);
 
-        Destroy(newEnemy);
-        StartCoroutine(Spawn());
+            Destroy(newEnemy.gameObject);
+        }
     }
 }
