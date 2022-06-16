@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(Spawn());
     }
 
-    public IEnumerator Spawn()
+    private IEnumerator Spawn()
     {
         int index = Random.Range(0, _quantityPositions);
 
