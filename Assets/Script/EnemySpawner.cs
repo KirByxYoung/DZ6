@@ -17,13 +17,16 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator Spawn()
     {
+        float delayTime = 2;
+        WaitForSeconds delay = new WaitForSeconds(delayTime);
+
         while (true)
         {
             int index = Random.Range(0, _quantityPositions);
 
             Enemy newEnemy = Instantiate(_emeny, _positions[index], Quaternion.identity);
 
-            yield return new WaitForSeconds(2);
+            yield return delay;
 
             Destroy(newEnemy.gameObject);
         }
