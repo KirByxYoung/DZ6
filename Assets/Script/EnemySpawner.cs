@@ -23,7 +23,6 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         Destroy(newEnemy);
-
         StartCoroutine(Spawn());
     }
 }
